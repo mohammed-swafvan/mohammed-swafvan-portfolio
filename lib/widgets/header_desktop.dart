@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mohammed_swafvan_portfolio/constants/custom_colors.dart';
 import 'package:mohammed_swafvan_portfolio/constants/header_items.dart';
 import 'package:mohammed_swafvan_portfolio/styles/style.dart';
+import 'package:mohammed_swafvan_portfolio/widgets/on_mouse_hover_widget.dart';
 import 'package:mohammed_swafvan_portfolio/widgets/website_logo.dart';
 
 class HeaderDesktop extends StatelessWidget {
@@ -26,16 +27,18 @@ class HeaderDesktop extends StatelessWidget {
             for (var i = 0; i < HeaderItems.headerTitleList.length; i++)
               Padding(
                 padding: const EdgeInsets.only(right: 14),
-                child: TextButton(
-                  onPressed: () {
-                    onNavitemTap(i);
-                  },
-                  child: Text(
-                    HeaderItems.headerTitleList[i],
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: CustomColors.whitePrimary,
+                child: OnMouseHoverWidget(
+                  child: TextButton(
+                    onPressed: () {
+                      onNavitemTap(i);
+                    },
+                    child: Text(
+                      HeaderItems.headerTitleList[i],
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: CustomColors.whitePrimary,
+                      ),
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:mohammed_swafvan_portfolio/constants/custom_colors.dart';
 import 'package:mohammed_swafvan_portfolio/constants/height_width.dart';
+import 'package:mohammed_swafvan_portfolio/widgets/on_mouse_hover_widget.dart';
 
 class MainDesktop extends StatelessWidget {
   const MainDesktop({super.key, required this.onGetInTouch});
@@ -64,18 +65,20 @@ class MainDesktop extends StatelessWidget {
                   ],
                 ),
                 Heightwidth.hight15,
-                SizedBox(
-                  width: 180,
-                  child: ElevatedButton(
-                    onPressed: onGetInTouch,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: CustomColors.yellowPrimay,
-                    ),
-                    child: const Text(
-                      "Get in touch",
-                      style: TextStyle(
-                        color: CustomColors.whitePrimary,
-                        fontWeight: FontWeight.bold,
+                OnMouseHoverWidget(
+                  child: SizedBox(
+                    width: 180,
+                    child: ElevatedButton(
+                      onPressed: onGetInTouch,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.yellowPrimay,
+                      ),
+                      child: const Text(
+                        "Get in touch",
+                        style: TextStyle(
+                          color: CustomColors.whitePrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -91,11 +94,13 @@ class MainDesktop extends StatelessWidget {
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(200),
-                child: Image.asset(
-                  "assets/images/my_profile.JPG",
-                  fit: BoxFit.fill,
+              child: OnMouseHoverWidget(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(200),
+                  child: Image.asset(
+                    "assets/images/my_profile.JPG",
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mohammed_swafvan_portfolio/constants/custom_colors.dart';
 import 'package:mohammed_swafvan_portfolio/constants/height_width.dart';
 import 'package:mohammed_swafvan_portfolio/utils/project_utils.dart';
-import 'package:mohammed_swafvan_portfolio/widgets/project_card_widget.dart';
+import 'package:mohammed_swafvan_portfolio/widgets/hobby_project_card_widget.dart';
 
-class ProjectSection extends StatelessWidget {
-  const ProjectSection({super.key});
+class HobbyProjectSection extends StatelessWidget {
+  const HobbyProjectSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,12 @@ class ProjectSection extends StatelessWidget {
     return Container(
       width: screenWidth,
       padding: const EdgeInsets.all(32).copyWith(bottom: 80),
+      color: CustomColors.bgLight1,
       child: Column(
         children: [
           //Title
           const Text(
-            "Main Projects",
+            "Hobby Projects",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -35,7 +36,7 @@ class ProjectSection extends StatelessWidget {
               runSpacing: 28,
               children: [
                 for (int i = 0; i < mainProjectsList.length; i++)
-                  ProjectCardWidget(
+                  HobbyProjectCardWidget(
                     project: mainProjectsList[i],
                   ),
               ],

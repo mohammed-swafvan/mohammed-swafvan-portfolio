@@ -10,6 +10,7 @@ class Footer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 26),
       width: double.maxFinite,
       alignment: Alignment.center,
+      color: CustomColors.bgLight1,
       child: const Text(
         "Made by Mohammed Swafvan with Flutter 3.16",
         style: TextStyle(

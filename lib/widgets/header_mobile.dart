@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:mohammed_swafvan_portfolio/styles/style.dart';
+import 'package:mohammed_swafvan_portfolio/widgets/on_mouse_hover_widget.dart';
 import 'package:mohammed_swafvan_portfolio/widgets/website_logo.dart';
 
 class HeaderMobile extends StatelessWidget {
@@ -23,9 +24,11 @@ class HeaderMobile extends StatelessWidget {
               onTap: onlogoTap,
             ),
             const Spacer(),
-            IconButton(
-              onPressed: onMenutap,
-              icon: const Icon(Icons.menu),
+            OnMouseHoverWidget(
+              child: IconButton(
+                onPressed: onMenutap,
+                icon: const Icon(Icons.menu),
+              ),
             )
           ],
         ),

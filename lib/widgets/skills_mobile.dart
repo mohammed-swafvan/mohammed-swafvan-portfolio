@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mohammed_swafvan_portfolio/constants/custom_colors.dart';
 import 'package:mohammed_swafvan_portfolio/constants/height_width.dart';
 import 'package:mohammed_swafvan_portfolio/constants/skill_items.dart';
+import 'package:mohammed_swafvan_portfolio/widgets/on_mouse_hover_widget.dart';
 
 class SkillsMobile extends StatelessWidget {
   const SkillsMobile({super.key});
@@ -32,21 +33,26 @@ class SkillsMobile extends StatelessWidget {
               children: [
                 // Platforms
                 for (int i = 0; i < SkillItems.platFormItems.length; i++)
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 5),
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(color: CustomColors.bgLight2, borderRadius: BorderRadius.circular(5)),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      leading: Image.asset(
-                        SkillItems.platFormItems[i]["img"],
-                        width: 26,
-                        height: 26,
+                  OnMouseHoverWidget(
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: 5),
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                        color: CustomColors.bgLight2,
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      title: Text(
-                        SkillItems.platFormItems[i]["title"],
-                        style: const TextStyle(
-                          color: CustomColors.whitePrimary,
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        leading: Image.asset(
+                          SkillItems.platFormItems[i]["img"],
+                          width: 26,
+                          height: 26,
+                        ),
+                        title: Text(
+                          SkillItems.platFormItems[i]["title"],
+                          style: const TextStyle(
+                            color: CustomColors.whitePrimary,
+                          ),
                         ),
                       ),
                     ),
@@ -59,10 +65,12 @@ class SkillsMobile extends StatelessWidget {
                   runSpacing: 12,
                   children: [
                     for (int i = 0; i < SkillItems.skillItems.length; i++)
-                      Chip(
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        avatar: Image.asset(SkillItems.skillItems[i]["img"]),
-                        label: Text(SkillItems.skillItems[i]["title"]),
+                      OnMouseHoverWidget(
+                        child: Chip(
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                          avatar: Image.asset(SkillItems.skillItems[i]["img"]),
+                          label: Text(SkillItems.skillItems[i]["title"]),
+                        ),
                       ),
                   ],
                 ),

@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
 
+import 'package:mohammed_swafvan_portfolio/widgets/on_mouse_hover_widget.dart';
+
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
 
@@ -28,7 +30,6 @@ class _ContactSectionState extends State<ContactSection> {
     return Container(
       padding: const EdgeInsets.all(32).copyWith(bottom: 80),
       width: double.infinity,
-      color: CustomColors.bgLight1,
       child: Column(
         children: [
           //Title
@@ -82,26 +83,28 @@ class _ContactSectionState extends State<ContactSection> {
             ),
             child: Row(
               children: [
-                SizedBox(
-                  height: 40,
-                  width: 200,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      statusText = await sendEmail(
-                        name: nameController.text,
-                        email: emailController.text,
-                        message: messageController.text,
-                      );
-                      setState(() {});
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: CustomColors.yellowPrimay,
-                    ),
-                    child: const Text(
-                      "Get in touch",
-                      style: TextStyle(
-                        color: CustomColors.whitePrimary,
-                        fontWeight: FontWeight.bold,
+                OnMouseHoverWidget(
+                  child: SizedBox(
+                    height: 40,
+                    width: 200,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        statusText = await sendEmail(
+                          name: nameController.text,
+                          email: emailController.text,
+                          message: messageController.text,
+                        );
+                        setState(() {});
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.yellowPrimay,
+                      ),
+                      child: const Text(
+                        "Get in touch",
+                        style: TextStyle(
+                          color: CustomColors.whitePrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -128,32 +131,40 @@ class _ContactSectionState extends State<ContactSection> {
             alignment: WrapAlignment.center,
             children: [
               // linkedin
-              InkWell(
-                onTap: () {
-                  js.context.callMethod('open', [SmsLinks.linkedin]);
-                },
-                child: Image.asset("assets/social_media/linkedin_icon.png", width: 28),
+              OnMouseHoverWidget(
+                child: InkWell(
+                  onTap: () {
+                    js.context.callMethod('open', [SmsLinks.linkedin]);
+                  },
+                  child: Image.asset("assets/social_media/linkedin_icon.png", width: 28),
+                ),
               ),
               // Instagram
-              InkWell(
-                onTap: () {
-                  js.context.callMethod('open', [SmsLinks.instagram]);
-                },
-                child: Image.asset("assets/social_media/instagram_icon.png", width: 28),
+              OnMouseHoverWidget(
+                child: InkWell(
+                  onTap: () {
+                    js.context.callMethod('open', [SmsLinks.instagram]);
+                  },
+                  child: Image.asset("assets/social_media/instagram_icon.png", width: 28),
+                ),
               ),
               // GitHub
-              InkWell(
-                onTap: () {
-                  js.context.callMethod('open', [SmsLinks.github]);
-                },
-                child: Image.asset("assets/social_media/github_icon.png", width: 28),
+              OnMouseHoverWidget(
+                child: InkWell(
+                  onTap: () {
+                    js.context.callMethod('open', [SmsLinks.github]);
+                  },
+                  child: Image.asset("assets/social_media/github_icon.png", width: 28),
+                ),
               ),
               // Facebook
-              InkWell(
-                onTap: () {
-                  js.context.callMethod('open', [SmsLinks.facebook]);
-                },
-                child: Image.asset("assets/social_media/facebook_icon.png", width: 28),
+              OnMouseHoverWidget(
+                child: InkWell(
+                  onTap: () {
+                    js.context.callMethod('open', [SmsLinks.facebook]);
+                  },
+                  child: Image.asset("assets/social_media/facebook_icon.png", width: 28),
+                ),
               ),
             ],
           ),
