@@ -7,10 +7,9 @@ import 'package:mohammed_swafvan_portfolio/constants/height_width.dart';
 import 'package:mohammed_swafvan_portfolio/constants/sms_links.dart';
 import 'package:mohammed_swafvan_portfolio/widgets/custom_text_field_widget.dart';
 import 'package:http/http.dart' as http;
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
 
 import 'package:mohammed_swafvan_portfolio/widgets/on_mouse_hover_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -133,36 +132,28 @@ class _ContactSectionState extends State<ContactSection> {
               // linkedin
               OnMouseHoverWidget(
                 child: InkWell(
-                  onTap: () {
-                    js.context.callMethod('open', [SmsLinks.linkedin]);
-                  },
+                  onTap: () => openWebsite(SmsLinks.linkedin),
                   child: Image.asset("assets/social_media/linkedin_icon.png", width: 28),
                 ),
               ),
               // Instagram
               OnMouseHoverWidget(
                 child: InkWell(
-                  onTap: () {
-                    js.context.callMethod('open', [SmsLinks.instagram]);
-                  },
+                  onTap: () => openWebsite(SmsLinks.instagram),
                   child: Image.asset("assets/social_media/instagram_icon.png", width: 28),
                 ),
               ),
               // GitHub
               OnMouseHoverWidget(
                 child: InkWell(
-                  onTap: () {
-                    js.context.callMethod('open', [SmsLinks.github]);
-                  },
+                  onTap: () => openWebsite(SmsLinks.github),
                   child: Image.asset("assets/social_media/github_icon.png", width: 28),
                 ),
               ),
               // Facebook
               OnMouseHoverWidget(
                 child: InkWell(
-                  onTap: () {
-                    js.context.callMethod('open', [SmsLinks.facebook]);
-                  },
+                  onTap: () => openWebsite(SmsLinks.facebook),
                   child: Image.asset("assets/social_media/facebook_icon.png", width: 28),
                 ),
               ),
@@ -282,5 +273,12 @@ class _ContactSectionState extends State<ContactSection> {
         fontWeight: FontWeight.w400,
       ),
     );
+  }
+
+  Future<void> openWebsite(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw Exception("Failed to launch $url");
+    }
   }
 }

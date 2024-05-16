@@ -3,10 +3,8 @@ import 'package:mohammed_swafvan_portfolio/constants/custom_colors.dart';
 import 'package:mohammed_swafvan_portfolio/constants/height_width.dart';
 import 'package:mohammed_swafvan_portfolio/widgets/on_mouse_hover_widget.dart';
 
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
-
 import 'package:readmore/readmore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExperienceCardWidget extends StatelessWidget {
   const ExperienceCardWidget({
@@ -41,9 +39,7 @@ class ExperienceCardWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {
-                        js.context.callMethod('open', [experiences['website']]);
-                      },
+                      onTap: () => openWebsite(experiences["website"]),
                       child: Text(
                         experiences["company"],
                         style: const TextStyle(
@@ -55,6 +51,7 @@ class ExperienceCardWidget extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 5),
                     Text(
                       experiences["duration"],
                       style: const TextStyle(
@@ -91,14 +88,16 @@ class ExperienceCardWidget extends StatelessWidget {
                   lessStyle: TextStyle(
                     fontWeight: FontWeight.w300,
                     color: CustomColors.yellowPrimay.withOpacity(0.6),
-                    fontSize: 12,
+                    fontSize: 10,
                     decoration: TextDecoration.underline,
+                    decorationColor: CustomColors.yellowPrimay.withOpacity(0.6),
                   ),
                   moreStyle: TextStyle(
                     fontWeight: FontWeight.w300,
                     color: CustomColors.yellowPrimay.withOpacity(0.6),
-                    fontSize: 12,
+                    fontSize: 10,
                     decoration: TextDecoration.underline,
+                    decorationColor: CustomColors.yellowPrimay.withOpacity(0.6),
                   ),
                 ),
               ],
@@ -107,5 +106,12 @@ class ExperienceCardWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> openWebsite(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw Exception("Failed to launch $url");
+    }
   }
 }

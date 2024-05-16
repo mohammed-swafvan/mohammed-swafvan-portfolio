@@ -3,6 +3,7 @@ import 'package:mohammed_swafvan_portfolio/pages/home_page.dart';
 import 'package:mohammed_swafvan_portfolio/styles/app_theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mohammed_swafvan_portfolio/constants/custom_colors.dart';
 import 'package:mohammed_swafvan_portfolio/utils/project_utils.dart';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
-
 import 'package:mohammed_swafvan_portfolio/widgets/on_mouse_hover_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HobbyProjectCardWidget extends StatelessWidget {
   const HobbyProjectCardWidget({super.key, required this.project});
@@ -71,9 +69,7 @@ class HobbyProjectCardWidget extends StatelessWidget {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () {
-                      js.context.callMethod("open", [project.amazonLink]);
-                    },
+                    onTap: () => openWebsite(project.amazonLink),
                     child: Image.asset(
                       "assets/images/amazon_appstore_icon.png",
                       width: 18,
@@ -82,9 +78,7 @@ class HobbyProjectCardWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: InkWell(
-                      onTap: () {
-                        js.context.callMethod("open", [project.githubLink]);
-                      },
+                      onTap: () => openWebsite(project.githubLink),
                       child: Image.asset(
                         "assets/images/github_icon.png",
                         width: 17,
@@ -98,5 +92,12 @@ class HobbyProjectCardWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> openWebsite(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw Exception("Failed to launch $url");
+    }
   }
 }
